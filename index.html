@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buku Kas - Lihat Catatan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">BK</span>
+      <div>
+        <h1>Buku Kas</h1>
+        <p class="tagline">Catatan keluar masuk uang</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="passbook">
+    <div class="perforation"></div>
+    <div class="seal">
+      <span class="seal-label">SALDO</span>
+      <span class="seal-amount" id="sealAmount">Rp 0</span>
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-card income">
+        <span class="summary-label">Total Masuk</span>
+        <span class="summary-amount" id="totalMasuk">Rp 0</span>
+      </div>
+      <div class="summary-card expense">
+        <span class="summary-label">Total Keluar</span>
+        <span class="summary-amount" id="totalKeluar">Rp 0</span>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <label class="visually-hidden" for="searchInput">Cari transaksi</label>
+      <input type="text" id="searchInput" placeholder="Cari keterangan atau kategori…" aria-label="Cari keterangan atau kategori">
+
+      <label class="visually-hidden" for="monthFilter">Filter berdasarkan bulan</label>
+      <select id="monthFilter" aria-label="Filter berdasarkan bulan">
+        <option value="">Semua bulan</option>
+      </select>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <table class="ledger" id="ledgerTable">
+      <thead>
+        <tr>
+          <th>Tanggal</th>
+          <th>Keterangan</th>
+          <th>Kategori</th>
+          <th>Jenis</th>
+          <th class="num">Jumlah</th>
+        </tr>
+      </thead>
+      <tbody id="ledgerBody"></tbody>
+    </table>
+
+    <p class="empty-state" id="emptyState" hidden>Belum ada catatan.</p>
+  </section>
+
+  <footer class="footnote">Data tersimpan di Google Sheets.</footer>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script>initViewPage();</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buku Kas - Mode Edit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">BK</span>
+      <div>
+        <h1>Buku Kas</h1>
+        <p class="tagline">Tambah, ubah, atau hapus transaksi</p>
+      </div>
+    </div>
+    <a class="btn btn-ghost" href="index.html">Lihat Catatan</a>
+  </header>
+
+  <section class="passbook">
+    <div class="perforation"></div>
+
+    <div id="editStatus" class="status"></div>
+
+    <form id="txForm">
+      <input type="hidden" id="txId">
+      <div class="form-grid">
+        <div>
+          <label for="tanggal">Tanggal</label>
+          <input type="date" id="tanggal" name="tanggal" required>
+        </div>
+        <div>
+          <label for="jenis">Jenis</label>
+          <select id="jenis" name="jenis" required>
+            <option value="Masuk">Masuk</option>
+            <option value="Keluar">Keluar</option>
+          </select>
+        </div>
+        <div class="full">
+          <label for="keterangan">Keterangan</label>
+          <input type="text" id="keterangan" name="keterangan" placeholder="Misal: Gaji bulan ini, Beli bensin…" required>
+        </div>
+        <div>
+          <label for="kategori">Kategori</label>
+          <select id="kategori" name="kategori" required>
+            <option value="" disabled selected>Pilih kategori</option>
+            <option value="Makan & Minum">Makan & Minum</option>
+            <option value="Transportasi">Transportasi</option>
+            <option value="Belanja">Belanja</option>
+            <option value="Kesehatan">Kesehatan</option>
+            <option value="Pendidikan">Pendidikan</option>
+            <option value="Hiburan">Hiburan</option>
+            <option value="__lainnya__">Lainnya (isi manual)</option>
+          </select>
+          <input type="text" id="kategoriLain" name="kategoriLain" placeholder="Tulis kategori sendiri…" hidden>
+        </div>
+        <div>
+          <label for="jumlah">Jumlah (Rp)</label>
+          <input type="number" id="jumlah" name="jumlah" min="0" step="1" placeholder="0" required>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn" id="submitBtn">Tambah Transaksi</button>
+        <button type="button" class="btn btn-ghost" id="cancelBtn" hidden>Batal</button>
+      </div>
+    </form>
+
+    <h2 class="section-title">Semua Transaksi</h2>
+    <div id="editList"></div>
+  </section>
+
+  <footer class="footnote">Data tersimpan di Google Sheets.</footer>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script>initEditPage();</script>
+</body>
+</html>
