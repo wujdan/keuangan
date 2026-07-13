@@ -16,7 +16,10 @@
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
@@ -125,7 +128,9 @@ h1 {
 }
 .filter-row input:focus, .filter-row select:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
 
-.status { font-size: 13px; color: var(--ink-soft); min-height: 18px; margin-bottom: 8px; }
+.status { font-size: 13px; color: var(--ink-soft); min-height: 18px; margin-bottom: 8px; transition: color .15s ease; }
+.status.success { color: var(--income); font-weight: 600; }
+.status.error { color: var(--expense); font-weight: 600; }
 .empty-state {
   color: var(--ink-soft); font-size: 14px; text-align: center; padding: 32px 16px;
   border: 1px dashed var(--line); border-radius: var(--radius); background: rgba(255,255,255,0.4);
@@ -165,14 +170,22 @@ input:focus, select:focus { outline: 2px solid var(--gold); outline-offset: 1px;
 
 .section-title { font-family: 'Fraunces', serif; font-size: 16px; margin: 28px 0 12px; }
 
+#editList { display: flex; flex-direction: column; gap: 8px; }
+
 .edit-row {
-  display: flex; justify-content: space-between; align-items: center; padding: 12px 6px;
-  border-bottom: 1px dashed var(--line); gap: 12px; flex-wrap: wrap;
+  display: flex; justify-content: space-between; align-items: center; padding: 12px 14px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: #fff;
+  gap: 12px; flex-wrap: wrap;
+  transition: box-shadow .15s ease, border-color .15s ease;
 }
-.edit-row-main { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; font-size: 14px; min-width: 0; }
+.edit-row:hover { box-shadow: var(--shadow); border-color: var(--gold); }
+.edit-row-main { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; font-size: 14px; min-width: 0; flex: 1 1 240px; }
 .edit-date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-soft); white-space: nowrap; }
 .edit-desc { font-weight: 500; word-break: break-word; }
-.edit-row-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.edit-amount { font-family: 'JetBrains Mono', monospace; font-weight: 700; white-space: nowrap; }
+.edit-row.row-income .edit-amount { color: var(--income); }
+.edit-row.row-expense .edit-amount { color: var(--expense); }
+.edit-row-actions { display: flex; gap: 8px; flex-shrink: 0; margin-left: auto; }
 
 /* ============================================================
    RESPONSIVE BREAKPOINTS
@@ -234,8 +247,9 @@ input:focus, select:focus { outline: 2px solid var(--gold); outline-offset: 1px;
   table.ledger td:nth-child(4)::before { content: "Jenis"; }
   table.ledger td:nth-child(5)::before { content: "Jumlah"; }
 
-  .edit-row { padding: 12px 4px; }
-  .edit-row-actions { width: 100%; justify-content: flex-end; }
+  .edit-row { padding: 12px; }
+  .edit-row-main { flex: 1 1 100%; }
+  .edit-row-actions { width: 100%; justify-content: flex-end; margin-left: 0; }
 }
 
 /* Small phone */
